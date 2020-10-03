@@ -1,9 +1,11 @@
 require "ball" --get ball.lua
 require "paddle"
+require "blocktable"
 
 function love.load()
   --I think these are pretty good dimensions for the screen
-  love.window.setMode(300, 400, {resizable = false})
+  love.window.setTitle("BREAKOUT!")
+  love.window.setMode(400, 400, {resizable = false})
   screenSize = {}
   screenSize.width = love.graphics.getWidth()
   screenSize.height = love.graphics.getHeight()
@@ -11,6 +13,7 @@ function love.load()
 end
 
 function love.update(dt)
+  
   if love.keyboard.isDown("right") then
     paddle._move(false)
   end
@@ -23,11 +26,11 @@ function love.update(dt)
   ball.y = ball.vel.y * dt+ ball.y
   
   --screen boundaries
-  if ball.x < 0 or ball.x > love.graphics.getWidth() then
+  if ball.x - ball.radius < 0 or ball.x + ball.radius > love.graphics.getWidth() then
     ball.vel.x = -ball.vel.x
   end
   
-  if ball.y < 0 then
+  if ball.y - ball.radius < 0 then
     ball.vel.y = -ball.vel.y
   end
   
@@ -48,6 +51,9 @@ end
 
 
 function love.draw()
+  love.graphics.setColor(1, 1, 1)
   paddle.draw()
+  blocktable.draw()
+  love.graphics.setColor(1, 1, 1)
   ball.draw()
 end
