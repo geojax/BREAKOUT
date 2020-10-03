@@ -13,7 +13,9 @@ end
 function love.update()
   if love.keyboard.isDown("right") then
     paddle._move(false)
-  elseif love.keyboard.isDown("left") then
+  end
+  
+  if love.keyboard.isDown("left") then
     paddle._move(true)
   end
   
