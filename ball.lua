@@ -2,8 +2,8 @@ ball = {x = 100, y = 100}
 
 --this is a questionable setup but it feels more organized to me
 ball.vel = {} --make ball.vel a table
-ball.vel.x = 2 --x velocity
-ball.vel.y = 2 --y velocity
+ball.vel.x = 200 --x velocity
+ball.vel.y = 200 --y velocity
 
 ball.radius = 7
 

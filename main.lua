@@ -10,7 +10,7 @@ function love.load()
   paddle.x = screenSize.width / 2 - paddle.width / 2
 end
 
-function love.update()
+function love.update(dt)
   if love.keyboard.isDown("right") then
     paddle._move(false)
   end
@@ -19,8 +19,8 @@ function love.update()
     paddle._move(true)
   end
   
-  ball.x = ball.vel.x + ball.x
-  ball.y = ball.vel.y + ball.y
+  ball.x = ball.vel.x * dt + ball.x
+  ball.y = ball.vel.y * dt+ ball.y
   
   --screen boundaries
   if ball.x < 0 or ball.x > love.graphics.getWidth() then
@@ -40,8 +40,8 @@ function love.update()
   
   --ball collide with paddle
   if ball.x > paddle.x and ball.x < paddle.x + paddle.width and
-  ball.y >= paddle.y then
-    ball.y = paddle.y
+  ball.y+ball.radius >= paddle.y and ball.y < screenSize.height then
+    ball.y = paddle.y - ball.radius
     ball.vel.y = -ball.vel.y
   end
 end
