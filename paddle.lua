@@ -13,3 +13,4 @@ end
 function paddle._move(isMovingRight)
   paddle.x = paddle.x + paddle.speed * (isMovingRight and -1 or 1)
 end
+
