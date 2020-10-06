@@ -24,7 +24,7 @@ function love.update(dt)
   end
   
   ball.x = ball.vel.x * dt + ball.x
-  ball.y = ball.vel.y * dt+ ball.y
+  ball.y = ball.vel.y * dt + ball.y
   
   --screen boundaries
   if ball.x - ball.radius < 0 or ball.x + ball.radius > love.graphics.getWidth() then
@@ -32,6 +32,7 @@ function love.update(dt)
   end
   
   if ball.y - ball.radius < 0 then
+    ball.y = ball.radius
     ball.vel.y = -ball.vel.y
   end
   
@@ -65,4 +66,6 @@ function love.draw()
   love.graphics.rectangle("line", math.ceil(ball.x / 50) * block_width - block_width/2, math.ceil(ball.y / 10) * block_height, block_width, block_height)
   love.graphics.print(math.ceil(ball.y / 10))
   love.graphics.print(math.ceil(ball.x / 50), 30)
+  love.graphics.print(blocktable[math.ceil(ball.x / 50)] or "nil", 60)
+  --love.graphics.print(blocktable[7], 90)
 end
